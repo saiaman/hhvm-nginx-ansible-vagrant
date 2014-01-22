@@ -1,0 +1,24 @@
+---
+# Variables listed here are applicable to all host groups
+
+ntpserver_01: 0.au.pool.ntp.org
+ntpserver_02: 1.au.pool.ntp.org
+ntpserver_03: 2.au.pool.ntp.org
+
+repository: https://github.com/nalindak/php-app.git
+
+mysqlservice: mysqld
+mysql_port: 3306
+dbuser: root
+dbname: arliveplugin
+upassword: test123
+
+# Nginx related stuff
+httpd_port: 80
+worker_processes: 4
+worker_connections: 1024
+
+
+# hhvm related stuff
+hhvm_port: 8080
+hhvm_sourceroot: "/var/www/html"

@@ -1,0 +1,12 @@
+---
+# This playbook deploys the whole application stack in this site.  
+
+- name: main site yml
+  hosts: all
+  user: ubuntu
+  sudo: True
+
+  roles:
+    - common
+    - web
+    - app

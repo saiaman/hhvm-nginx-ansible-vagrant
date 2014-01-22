@@ -1,0 +1,23 @@
+---
+# Installing and configuring hhvm server
+
+  - name: add hhvm repo
+    apt_repository: repo='deb http://dl.hhvm.com/ubuntu precise main'    
+
+  - name: addkey hhvm
+    apt_key: url='http://dl.hhvm.com/conf/hhvm.gpg.key'
+
+  - name: install hhvm
+    apt: name=hhvm state=latest update_cache=yes
+
+  - name: change server hdf
+    template: src=server.hdf.j2 dest=/etc/hhvm/server.hdf
+    notify: restart hhvm
+
+  - name: change config hdf
+    template: src=config.hdf.j2 dest=/etc/hhvm/config.hdf
+    notify: restart hhvm
+
+  - name: change php ini
+    template: src=php.ini.j2 dest=/etc/hhvm/php.ini
+    notify: restart hhvm

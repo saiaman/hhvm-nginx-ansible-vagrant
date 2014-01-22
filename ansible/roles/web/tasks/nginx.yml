@@ -1,0 +1,20 @@
+---
+# Nginx related services and tasks
+
+  - name: add nginx ppa
+    apt_repository: repo='ppa:nginx/stable' state=present
+
+  - name: install nginx
+    apt: pkg=nginx state=latest update_cache=yes
+
+  - name: Create nginx.conf
+    template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
+    notify: create nginx.conf
+
+  - name: create vhost file
+    template: src=vhost.j2 dest=/etc/nginx/sites-available/vhost
+    notify: create vhost file
+
+  - name: Remove default conf file
+    file: path=/etc/nginx/sites-enabled/default state=absent
+    notify: restart nginx
